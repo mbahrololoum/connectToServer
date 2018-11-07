@@ -23,7 +23,6 @@ int main(int argc, char *argv[])
     qmlRegisterType<ServiceContactList>("Company.ServiceContactList", 1, 0, "ServiceContactList");
 
     qmlRegisterType<EntityContactList>("EntityContactList", 1, 0, "EntityContactList");
-
     qRegisterMetaType<ModelContactList*>("ModelContactList*");
 
     engine.load(QUrl(QLatin1String("qrc:/main.qml")));
