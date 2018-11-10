@@ -5,11 +5,10 @@ import QtQuick.Controls.Material 2.2
 
 import Company.ServiceSearchContact 1.0
 
-import "../Componnet/Button" as MyButtonComponnent
+import "../Component/Button" as MyButtonComponent
 
 Item {
-
-    Component.onCompleted: searchClmOpacity.start()
+    Component.onCompleted: { flickableOpacity.start(); forceActiveFocus() }
 
     property bool animationLastState: false
 
@@ -22,10 +21,10 @@ Item {
             familyTxt.text = family
             favirotySw.checked = favority ? true : false
             gender === "Male"   ? maleRadio.checked   = true : maleRadio.checked   = false
-            gender === "Famele" ? femaleRadio.checked = true : femaleRadio.checked = false
+            gender === "Female" ? femaleRadio.checked = true : femaleRadio.checked = false
 
-            showContactClmOpacity.start()
-            hiddencheckBtnOpacity.start()
+            showColumnLayoutOpacity.start()
+            hiddenButtonOpacity.start()
             animationLastState = true
         }
         onSignalFaile: {
@@ -36,16 +35,16 @@ Item {
         }
     }
 
-    NumberAnimation { id: showContactClmOpacity;   target: showContactClm; properties: "opacity"; from: 0.0; to: 1.0; duration: 700 }
-    NumberAnimation { id: hiddenContactClmOpacity; target: showContactClm; properties: "opacity"; from: 1.0; to: 0.0; duration: 700 }
+    NumberAnimation { id: showColumnLayoutOpacity;   target: columnLayout;   properties: "opacity"; from: 0.0; to: 1.0; duration: 700 }
+    NumberAnimation { id: hiddenColumnLayoutOpacity; target: columnLayout;   properties: "opacity"; from: 1.0; to: 0.0; duration: 700 }
 
-    NumberAnimation { id: showCheckBtnOpacity;     target: checkBtn;       properties: "opacity"; from: 0.0; to: 1.0; duration: 700 }
-    NumberAnimation { id: hiddencheckBtnOpacity;   target: checkBtn;       properties: "opacity"; from: 1.0; to: 0.0; duration: 700 }
+    NumberAnimation { id: showButtonOpacity;         target: checkBtn;       properties: "opacity"; from: 0.0; to: 1.0; duration: 700 }
+    NumberAnimation { id: hiddenButtonOpacity;       target: checkBtn;       properties: "opacity"; from: 1.0; to: 0.0; duration: 700 }
 
-    NumberAnimation { id: searchClmOpacity;        target: searchClm;      properties: "opacity"; from: 0.0; to: 1.0; duration: 700 }
+    NumberAnimation { id: flickableOpacity;          target: flickable;      properties: "opacity"; from: 0.0; to: 1.0; duration: 700 }
 
     Flickable {
-        id: searchClm
+        id: flickable
         anchors.fill: parent
         contentHeight: parent.height + 10
         opacity: 0
@@ -56,7 +55,6 @@ Item {
 
 
             Label {
-                id: titleWelcom
                 text: "Search Contact"
                 font { family: myStyle.iranSanceFontL; pixelSize: 20 }
                 anchors.horizontalCenter: parent.horizontalCenter
@@ -64,10 +62,15 @@ Item {
             }
 
             Label {
-                text: "Please insert mobile  number for\nsearch contact."
+                text: "Please insert mobile  number for search contact."
                 font { family: myStyle.iranSanceFontL; pixelSize: 14 }
                 anchors.horizontalCenter: parent.horizontalCenter
                 horizontalAlignment: Text.AlignLeft
+                verticalAlignment: Text.AlignTop
+                Layout.preferredWidth:  parent.width
+                Layout.preferredHeight: contentHeight
+                wrapMode: Label.WordWrap
+                lineHeight: 1
             }
 
             TextField {
@@ -76,22 +79,17 @@ Item {
                 font { family: myStyle.iranSanceFontL; pixelSize: 14 }
                 anchors.horizontalCenter: parent.horizontalCenter
                 Layout.preferredWidth: controlWidth
-                height: 45
                 horizontalAlignment: Text.AlignLeft
                 validator: RegExpValidator { regExp: /(^(09)[0-9]{9}\\d$)/ }
                 inputMethodHints: Qt.ImhDialableCharactersOnly
+                onTextChanged: if(phoneNumberTxt.length !== 11 && animationLastState) { hiddenColumnLayoutOpacity.start(); showButtonOpacity.start(); animationLastState = false }
                 focus: true
-                onTextChanged: if(phoneNumberTxt.length !== 11 && animationLastState) { hiddenContactClmOpacity.start(); showCheckBtnOpacity.start(); animationLastState = false }
             }
 
-            MyButtonComponnent.CustomeButton {
+            MyButtonComponent.CustomeButton {
                 id: checkBtn
                 buttonText: "Search"
-                enabled: true
-                buttonFontSize: 14
                 anchors.horizontalCenter: parent.horizontalCenter
-                width: controlWidth
-                buttonHeight: 35
                 onClicked: {
                     if(phoneNumberTxt.text.length !== 11)
                     {
@@ -106,7 +104,7 @@ Item {
             }
 
             ColumnLayout{
-                id: showContactClm
+                id: columnLayout
                 spacing: 15
                 opacity: 0
 
@@ -116,9 +114,8 @@ Item {
                     font { family: myStyle.iranSanceFontL; pixelSize: 14 }
                     anchors.horizontalCenter: parent.horizontalCenter
                     Layout.preferredWidth: controlWidth
-                    height: 45
                     horizontalAlignment: Text.AlignLeft
-                    focus: true
+                    readOnly: true
                 }
 
                 TextField {
@@ -127,23 +124,22 @@ Item {
                     font { family: myStyle.iranSanceFontL; pixelSize: 14 }
                     anchors.horizontalCenter: parent.horizontalCenter
                     Layout.preferredWidth: controlWidth
-                    height: 45
                     horizontalAlignment: Text.AlignLeft
-                    focus: true
+                    readOnly: true
                 }
 
                 RowLayout {
                     spacing: 5
 
                     Label  { text: "Favority" }
-                    Switch { id: favirotySw;  }
+                    Switch { id: favirotySw   }
                 }
 
                 RowLayout {
                     spacing: 5
 
                     Label       { text: "gender"                                         }
-                    RadioButton { id: femaleRadio; enabled: false; text: qsTr("female")  }
+                    RadioButton { id: femaleRadio; enabled: false; text: qsTr("Female")  }
                     RadioButton { id: maleRadio;   enabled: false; text: qsTr("Male")    }
                 }
             }

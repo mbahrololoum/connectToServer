@@ -43,7 +43,6 @@ public slots:
 
     void responceDeleteContactList(QJsonObject *answer);
 
-
 };
 
 #endif // SERVICEDELETECONTACT_H

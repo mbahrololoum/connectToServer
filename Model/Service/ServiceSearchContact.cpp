@@ -3,6 +3,7 @@
 ServiceSearchContact::ServiceSearchContact(QObject *parent) : QObject(parent)
 {
     o_JsonNetworkHandler = new JsonNetworkHandler();
+
     connect(o_JsonNetworkHandler, SIGNAL(signalSearchContact(QJsonObject*)), this, SLOT(responceSearchContact(QJsonObject*)));
 }
 

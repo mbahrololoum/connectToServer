@@ -3,10 +3,10 @@
 ServiceDeleteContact::ServiceDeleteContact(QObject *parent) : QObject(parent)
 {
     o_JsonNetworkHandler = new JsonNetworkHandler();
+
     connect(o_JsonNetworkHandler, SIGNAL(signalCheckContact(QJsonObject*)), this, SLOT(responceCheckContact(QJsonObject*)));
     connect(o_JsonNetworkHandler, SIGNAL(signalDeleteContact(QJsonObject*)), this, SLOT(responceDeleteContact(QJsonObject*)));
     connect(o_JsonNetworkHandler, SIGNAL(signalDeleteContactList(QJsonObject*)), this, SLOT(responceDeleteContactList(QJsonObject*)));
-
 }
 
 ServiceDeleteContact::~ServiceDeleteContact()

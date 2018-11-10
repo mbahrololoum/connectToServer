@@ -3,12 +3,12 @@ import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
 
 import "../OtherPages"        as Pages
-import "../Componnet/Header"
-import "../Componnet/Drawer"
+import "../Component/Header"
+import "../Component/Drawer"
 
 Item {
     anchors.fill: parent
-    Component.onCompleted: busyIndicator.visible = false
+    Component.onCompleted: { busyIndicator.visible = false; forceActiveFocus() }
 
     signal backClicked
 
@@ -27,21 +27,11 @@ Item {
         focus: true
 
         Keys.onReleased: {
-            //        if(event.key === Qt.Key_Back && depth != 1)
-            //        { event.accepted = true; managmentActivePage.pop(); stackView.pop() }
-        }
-
-        onDepthChanged: {
-            //            if(managmentActivePage[managmentActivePage.length-1]      === "Home"         ||
-            //                    managmentActivePage[managmentActivePage.length-1] === "GridCategory" ||
-            //                    managmentActivePage[managmentActivePage.length-1] === "SubCategory")
-            //                searchAnimation = false
-            //            else
-            //                searchAnimation = true
-
-            //            depthStack = depth
-            //            if(stackView.depth == 1)  mainHeader.visableBack = false
-            //            else                      mainHeader.visableBack = true
+            if(event.key === Qt.Key_Back && depth != 1)
+            {
+                event.accepted = true;
+                stackView.pop()
+            }
         }
     }
 

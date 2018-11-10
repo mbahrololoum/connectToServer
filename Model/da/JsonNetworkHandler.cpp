@@ -16,19 +16,17 @@ void JsonNetworkHandler::sendRequest(const QJsonDocument &json, const QString &a
     qByteArray.append(strJson);
 
     // no need to verify ssl type
-    QNetworkRequest::CacheLoadControlAttribute;
-    QNetworkRequest::AlwaysNetwork;
     QNetworkRequest request;
 
-    QSslConfiguration config = QSslConfiguration::defaultConfiguration();
-    config.setProtocol(QSsl::AnyProtocol);   //TlsV1SslV3
-    request.setSslConfiguration(config);
+    //    QSslConfiguration config = QSslConfiguration::defaultConfiguration();
+    //    config.setProtocol(QSsl::AnyProtocol);   //TlsV1SslV3
+    //    request.setSslConfiguration(config);
 
-    // no need to verify ssl type
-    QSslConfiguration conf = request.sslConfiguration();
-    conf.setPeerVerifyMode(QSslSocket::VerifyNone);
-    QSslConfiguration::setDefaultConfiguration(conf);
-    request.setSslConfiguration(conf);
+    //    // no need to verify ssl type
+    //    QSslConfiguration conf = request.sslConfiguration();
+    //    conf.setPeerVerifyMode(QSslSocket::VerifyNone);
+    //    QSslConfiguration::setDefaultConfiguration(conf);
+    //    request.setSslConfiguration(conf);
 
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
     //request.setRawHeader("Authorization", token);
@@ -41,8 +39,6 @@ void JsonNetworkHandler::handleResponse(QNetworkReply *res)
 {
     QJsonDocument jsonResponse = QJsonDocument::fromJson(res->readAll());
     QJsonObject jsonObject = jsonResponse.object();
-
-    qDebug() <<"MAIN jsonResponse   " << jsonResponse;
 
     if(jsonObject["status"].toBool())
         checkFaunctionName(jsonObject);

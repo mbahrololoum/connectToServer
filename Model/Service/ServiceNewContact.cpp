@@ -3,6 +3,7 @@
 ServiceNewContact::ServiceNewContact(QObject *parent) : QObject(parent)
 {
     o_JsonNetworkHandler = new JsonNetworkHandler();
+
     connect(o_JsonNetworkHandler, SIGNAL(signalCreateNewContact(QJsonObject*)), this, SLOT(responceCreateNewContact(QJsonObject*)));
 }
 

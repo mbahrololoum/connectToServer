@@ -4,7 +4,7 @@ import QtQuick.Layouts 1.3
 
 import Company.ServiceLogin 1.0
 
-import "../Componnet/Button" as MyButtonComponnent
+import "../Component/Button" as MyButtonComponent
 
 Item {
     id: loginPages
@@ -16,8 +16,7 @@ Item {
         id: serviceLogin
 
         onSignalLoginSuccess: {
-            objProfile.name   = name
-            objProfile.family = family
+            objProfile.nameFamily = name + " " + family
             signalLogin()
         }
         onSignalLoginFaile: {
@@ -58,7 +57,6 @@ Item {
                 font { family: myStyle.iranSanceFontL; pixelSize: 14 }
                 anchors.horizontalCenter: parent.horizontalCenter
                 width: controlWidth
-                height: 45
                 horizontalAlignment: Text.AlignLeft
                 anchors.top: logo.bottom
                 anchors.topMargin: 30
@@ -87,7 +85,6 @@ Item {
                 font { family: myStyle.iranSanceFontL; pixelSize: 14 }
                 anchors.horizontalCenter: parent.horizontalCenter
                 width: controlWidth
-                height: 55
                 horizontalAlignment: Text.AlignLeft
                 anchors.top: usernameTxt.bottom
                 anchors.topMargin: 0
@@ -109,16 +106,12 @@ Item {
                 sourceSize: "20x20"
             }
 
-            MyButtonComponnent.CustomeButton {
+            MyButtonComponent.CustomeButton {
                 id: myButtonRegister
                 buttonText: "Login"
-                enabled: true
-                buttonFontSize: 14
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.top: passwordTxt.bottom
                 anchors.topMargin: 20
-                width: controlWidth
-                buttonHeight: 35
                 onClicked: {
                     busyIndicator.visible = true
                     serviceLogin.requestLogin(usernameTxt.text, passwordTxt.text)
@@ -127,7 +120,7 @@ Item {
 
             CheckBox {
                 id: chkRemmember
-                text: qsTr("Remmember")
+                text: qsTr("Remember")
                 checked: objLogin.remmember
                 anchors.top: myButtonRegister.bottom; anchors.topMargin: 10
                 anchors.left: myButtonRegister.left;  anchors.leftMargin: 0
@@ -142,13 +135,6 @@ Item {
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.bottom: parent.bottom
             anchors.bottomMargin: 30
-
-            MouseArea {
-                anchors.fill: parent
-                onReleased: lbCreateAccount.scale = 1.0
-                onPressed:  lbCreateAccount.scale = 1.1
-                onClicked:  sigRegisterAccount()
-            }
         }
     }
 }

@@ -3,6 +3,7 @@
 ServiceLogin::ServiceLogin(QObject *parent) : QObject(parent)
 {
     o_JsonNetworkHandler = new JsonNetworkHandler();
+
     connect(o_JsonNetworkHandler, SIGNAL(signalLogin(QJsonObject*)), this, SLOT(responceLogin(QJsonObject*)));
 }
 

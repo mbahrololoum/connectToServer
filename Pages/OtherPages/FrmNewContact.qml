@@ -4,10 +4,10 @@ import QtQuick.Layouts 1.3
 
 import Company.ServiceNewContact 1.0
 
-import "../Componnet/Button" as MyButtonComponnent
+import "../Component/Button" as MyButtonComponent
 
 Item {
-    Component.onCompleted: opacityAnimation.start()
+    Component.onCompleted: { opacityAnimation.start(); forceActiveFocus() }
 
     ServiceNewContact{
         id: serviceNewContact
@@ -58,7 +58,6 @@ Item {
                 font { family: myStyle.iranSanceFontL; pixelSize: 14 }
                 anchors.horizontalCenter: parent.horizontalCenter
                 Layout.preferredWidth: controlWidth
-                height: 45
                 horizontalAlignment: Text.AlignLeft
                 focus: true
             }
@@ -69,9 +68,7 @@ Item {
                 font { family: myStyle.iranSanceFontL; pixelSize: 14 }
                 anchors.horizontalCenter: parent.horizontalCenter
                 Layout.preferredWidth: controlWidth
-                height: 45
                 horizontalAlignment: Text.AlignLeft
-                focus: true
             }
 
             TextField {
@@ -80,18 +77,16 @@ Item {
                 font { family: myStyle.iranSanceFontL; pixelSize: 14 }
                 anchors.horizontalCenter: parent.horizontalCenter
                 Layout.preferredWidth: controlWidth
-                height: 45
                 horizontalAlignment: Text.AlignLeft
                 validator: RegExpValidator { regExp: /(^(09)[0-9]{9}\\d$)/ }
                 inputMethodHints: Qt.ImhDialableCharactersOnly
-                focus: true
             }
 
             RowLayout {
                 spacing: 5
 
-                Label  { text: "Favority" }
-                Switch { id: favirotySw; checked: false    }
+                Label  { text: "Favority"               }
+                Switch { id: favirotySw; checked: false }
             }
 
             RowLayout {
@@ -102,14 +97,10 @@ Item {
                 RadioButton { id: maleRadio;   text: qsTr("Male")                  }
             }
 
-            MyButtonComponnent.CustomeButton {
+            MyButtonComponent.CustomeButton {
                 id: myButtonRegister
                 buttonText: "Register"
-                enabled: true
-                buttonFontSize: 14
                 anchors.horizontalCenter: parent.horizontalCenter
-                width: controlWidth
-                buttonHeight: 35
                 onClicked: {
                     if(nameTxt.text === "" || familyTxt.text === "" || phoneNumberTxt.text.length !== 11)
                     {

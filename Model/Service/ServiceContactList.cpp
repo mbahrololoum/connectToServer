@@ -42,8 +42,6 @@ void ServiceContactList::responseContactList(QJsonObject *answer)
     }
     else
     {
-        qDebug() << "\n \n \n \n \n \n \n \n \n FALSE => ";
-
         emit signalFaile(result["titleMsg"].toString(), result["textMsg"].toString());
     }
 }
