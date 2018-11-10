@@ -25,7 +25,7 @@ Item {
             messageDialog.open()
         }
         onSignalGetSetting:{
-            objLogin.remmember = lastState
+            objLogin.remember  = lastState
             objLogin.username  = username
             objLogin.password  = password
         }
@@ -119,9 +119,9 @@ Item {
             }
 
             CheckBox {
-                id: chkRemmember
+                id: chkRemember
                 text: qsTr("Remember")
-                checked: objLogin.remmember
+                checked: objLogin.remember
                 anchors.top: myButtonRegister.bottom; anchors.topMargin: 10
                 anchors.left: myButtonRegister.left;  anchors.leftMargin: 0
                 onCheckedChanged: serviceLogin.setSetting(checked, usernameTxt.text, passwordTxt.text)

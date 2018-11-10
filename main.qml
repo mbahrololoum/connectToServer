@@ -33,7 +33,7 @@ ApplicationWindow {
 
     QtObject{
         id: objLogin
-        property bool   remmember: false
+        property bool   remember: false
         property string username : ""
         property string password : ""
     }

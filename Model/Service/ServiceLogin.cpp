@@ -43,14 +43,14 @@ void ServiceLogin::responceLogin(QJsonObject *answer)
 
 void ServiceLogin::getSetting()
 {
-    setting.beginGroup("remmember");
+    setting.beginGroup("remember");
     emit signalGetSetting(setting.value("lastState").toBool(), setting.value("username").toString(), setting.value("password").toString());
     setting.endGroup();
 }
 
 void ServiceLogin::setSetting(const bool& state, const QString& username, const QString& password)
 {
-    setting.beginGroup("remmember");
+    setting.beginGroup("remember");
     setting.setValue("lastState", state);
     setting.setValue("username", state ? username : "");
     setting.setValue("password", state ? password : "");
