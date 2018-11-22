@@ -38,7 +38,9 @@ void ServiceLogin::responceLogin(QJsonObject *answer)
         emit signalLoginSuccess(res["name"].toString(), res["family"].toString());
     }
     else
+    {
         emit signalLoginFaile(result["titleMsg"].toString(), result["textMsg"].toString());
+    }
 }
 
 void ServiceLogin::getSetting()

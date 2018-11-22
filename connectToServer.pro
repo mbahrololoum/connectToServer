@@ -37,6 +37,8 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
+include(android-openssl.pri)
+
 HEADERS += \
      Model/Entity/EntityContactList.h \
     Model/Model/ModelContactList.h \
@@ -50,6 +52,10 @@ HEADERS += \
     Model/Service/ServiceContactList.h
 
 DISTFILES += \
+    prebuilt/armeabi-v7a/libcrypto.so \
+    prebuilt/armeabi-v7a/libssl.so \
+    prebuilt/x86/libcrypto.so \
+    prebuilt/x86/libssl.so \
     android/AndroidManifest.xml \
     android/gradle/wrapper/gradle-wrapper.jar \
     android/gradlew \

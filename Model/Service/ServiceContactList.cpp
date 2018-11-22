@@ -23,12 +23,12 @@ void ServiceContactList::requestContactList()
     QJsonDocument qJsonDocument(qJsonObject);
     QString address = "/contactList";
 
-    m_modelContactList->removeAll();
     o_JsonNetworkHandler->sendRequest(qJsonDocument,address);
 }
 
 void ServiceContactList::responseContactList(QJsonObject *answer)
 {
+    m_modelContactList->removeAll();
     QJsonObject result = (*answer);
 
     if(result["status"].toBool())

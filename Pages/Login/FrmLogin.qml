@@ -20,6 +20,7 @@ Item {
             signalLogin()
         }
         onSignalLoginFaile: {
+            busyIndicator.visible = false
             messageDialog.title = titleMsg
             messageDialog.text  = textMsg
             messageDialog.open()
