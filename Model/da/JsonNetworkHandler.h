@@ -1,7 +1,7 @@
 #ifndef JsonNetworkHandler_H
 #define JsonNetworkHandler_H
 
-#define serverUrl "http://localhost:3003/service/"
+#define serverUrl "https://127.0.0.1:3003/service/"
 
 #include <QNetworkAccessManager>
 #include <QSslConfiguration>

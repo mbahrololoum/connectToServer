@@ -10,7 +10,6 @@ JsonNetworkHandler::JsonNetworkHandler()
 void JsonNetworkHandler::sendRequest(const QJsonDocument &json, const QString &address)
 {
     QUrl* url  = new QUrl(serverUrl + address);
-    qDebug() << "json  " << json;
 
     QByteArray qByteArray;
     QString strJson(json.toJson(QJsonDocument::Compact));
@@ -19,7 +18,7 @@ void JsonNetworkHandler::sendRequest(const QJsonDocument &json, const QString &a
     // no need to verify ssl type
     QNetworkRequest request;
     QSslConfiguration config = QSslConfiguration::defaultConfiguration();
-    config.setProtocol(QSsl::AnyProtocol);   //TlsV1SslV3
+    config.setProtocol(QSsl::TlsV1SslV3);   //TlsV1SslV3
     request.setSslConfiguration(config);
 
     // no need to verify ssl type
@@ -28,10 +27,11 @@ void JsonNetworkHandler::sendRequest(const QJsonDocument &json, const QString &a
     QSslConfiguration::setDefaultConfiguration(conf);
     request.setSslConfiguration(conf);
 
+
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
-    //request.setRawHeader("Authorization", token);
     request.setUrl(*url);
 
+    qDebug() << "request  " << qByteArray;
     networkManager->post(request,qByteArray);
 }
 
