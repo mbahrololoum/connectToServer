@@ -1,4 +1,4 @@
-QT += qml quick sql svg
+QT += qml quick sql svg location positioning
 
 CONFIG += c++11
 
@@ -11,7 +11,10 @@ SOURCES += main.cpp \
     Model/Service/ServiceNewContact.cpp \
     Model/Service/ServiceDeleteContact.cpp \
     Model/Service/ServiceSearchContact.cpp \
-    Model/Service/ServiceContactList.cpp
+    Model/Service/ServiceContactList.cpp \
+    Model/Service/ServiceMap.cpp \
+    Model/Model/ModelMap.cpp \
+    Model/Entity/EntityMap.cpp
 
 RESOURCES += qml.qrc
 
@@ -49,7 +52,10 @@ HEADERS += \
     Model/Service/ServiceNewContact.h \
     Model/Service/ServiceDeleteContact.h \
     Model/Service/ServiceSearchContact.h \
-    Model/Service/ServiceContactList.h
+    Model/Service/ServiceContactList.h \
+    Model/Service/ServiceMap.h \
+    Model/Model/ModelMap.h \
+    Model/Entity/EntityMap.h
 
 DISTFILES += \
     prebuilt/armeabi-v7a/libcrypto.so \

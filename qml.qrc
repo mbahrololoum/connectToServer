@@ -37,5 +37,11 @@
         <file>Image/profile/user-9.svg</file>
         <file>Pages/OtherPages/FrmSearchContact.qml</file>
         <file>Pages/Component/BusyIndicator/BusyIndicator.qml</file>
+        <file>Pages/OtherPages/FrmMap.qml</file>
+        <file>Image/Map/myLocationPin.svg</file>
+        <file>Image/Map/pinLocationStore.svg</file>
+        <file>Image/Map/filter.svg</file>
+        <file>Image/Map/refresh.svg</file>
+        <file>Image/Drawer/map.svg</file>
     </qresource>
 </RCC>

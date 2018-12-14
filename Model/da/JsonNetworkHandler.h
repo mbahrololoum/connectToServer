@@ -43,6 +43,7 @@ signals:
 
     void signalDeleteContactList(QJsonObject* answer);
 
+    void signalMap(QJsonObject* answer);
 
 private slots:
 

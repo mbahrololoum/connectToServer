@@ -40,8 +40,6 @@ void JsonNetworkHandler::handleResponse(QNetworkReply *res)
     QJsonDocument jsonResponse = QJsonDocument::fromJson(res->readAll());
     QJsonObject jsonObject = jsonResponse.object();
 
-    qDebug() << "jsonResponse " << jsonResponse;
-
     if(jsonObject["status"].toBool())
         checkFaunctionName(jsonObject);
     else
@@ -86,6 +84,11 @@ void JsonNetworkHandler::checkFaunctionName(QJsonObject qJsonObject)
     {
         QJsonObject result = qJsonObject["result"].toObject();
         emit signalDeleteContactList(&result);
+    }
+    else if(qJsonObject["functionName"].toString() == "map")
+    {
+        QJsonObject result = qJsonObject["result"].toObject();
+        emit signalMap(&result);
     }
 }
 

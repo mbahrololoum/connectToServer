@@ -41,5 +41,6 @@ Item {
     Component { id: deleteContact;  Pages.FrmDeleteContact{} }
     Component { id: contactList;    Pages.FrmContactList  {} }
     Component { id: searchContact;  Pages.FrmSearchContact{} }
+    Component { id: map;            Pages.FrmMap          {} }
 }
 

@@ -23,6 +23,7 @@ Flickable{
         ListElement{ title: "Delete Contact"; icon: "/Image/Drawer/delete.svg";  objName: "deleteContact" }
         ListElement{ title: "Contact List";   icon: "/Image/Drawer/list.svg";    objName: "courseList"    }
         ListElement{ title: "Search";         icon: "/Image/Drawer/search.svg";  objName: "search"        }
+        ListElement{ title: "Map";            icon: "/Image/Drawer/map.svg";     objName: "map"           }
         ListElement{ title: "Exit";           icon: "/Image/Drawer/exit.svg";    objName: "exit"          }
     }
 
@@ -57,6 +58,7 @@ Flickable{
                         id: myImage
                         source:icon; sourceSize: "40x40"
                         Layout.alignment: Qt.AlignHCenter
+                        fillMode: Image.PreserveAspectFit
                     }
 
                     Label {
@@ -84,6 +86,7 @@ Flickable{
                         case "deleteContact": stackView.push(deleteContact);         break
                         case "courseList":    stackView.push(contactList);           break
                         case "search":        stackView.push(searchContact);         break
+                        case "map":           stackView.push(map);                   break
                         case "exit":          mainLoader.sourceComponent = frmLogin; break
                         }
                 }
