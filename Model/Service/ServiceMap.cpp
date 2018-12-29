@@ -31,7 +31,6 @@ void ServiceMap::request()
 
 void ServiceMap::response(QJsonObject *answer)
 {
-    emit sigSuccessfullyMapResponce();
     qDebug() << "\n\n\n\n\n\n\n\n\n  =>        " << (*answer) ;
 
     QJsonObject result = (*answer);

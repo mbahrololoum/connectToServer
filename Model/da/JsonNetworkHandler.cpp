@@ -18,15 +18,10 @@ void JsonNetworkHandler::sendRequest(const QJsonDocument &json, const QString &a
     // no need to verify ssl type
     QNetworkRequest request;
     QSslConfiguration config = QSslConfiguration::defaultConfiguration();
-    config.setProtocol(QSsl::TlsV1SslV3);   //TlsV1SslV3
+    config.setProtocol(QSsl::TlsV1SslV3);
+    config.setPeerVerifyMode(QSslSocket::VerifyNone);
+    QSslConfiguration::setDefaultConfiguration(config);
     request.setSslConfiguration(config);
-
-    // no need to verify ssl type
-    QSslConfiguration conf = request.sslConfiguration();
-    conf.setPeerVerifyMode(QSslSocket::VerifyNone);
-    QSslConfiguration::setDefaultConfiguration(conf);
-    request.setSslConfiguration(conf);
-
 
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
     request.setUrl(*url);

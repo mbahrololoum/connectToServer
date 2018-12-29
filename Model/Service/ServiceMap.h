@@ -43,8 +43,6 @@ signals:
 
     void sigEmptySearchNearBy();
 
-    void sigSuccessfullyMapResponce();
-
     void ModelMapChanged(ModelMap* modelMap);
 
 public slots:

@@ -25,15 +25,6 @@ Item {
     }
 
     property variant coord        : []
-    property int     pId          : 0
-    property string  pPhoto       : ""
-    property string  pTitle       : ""
-    property string  pDescription : ""
-    property string  pRating      : ""
-    property string  pLocation    : ""
-    property string  filterItem   : "all"
-
-    ButtonGroup { id: filterButtons }
 
     ServiceMap  { id: serviceMap    }
 
@@ -85,7 +76,7 @@ Item {
         }
 
         MapItemView {
-            id:mapItemView
+            id: mapItemView
             model: serviceMap.modelMap
             delegate: MapQuickItem {
                 coordinate: QtPositioning.coordinate(latitude ,longitude)
